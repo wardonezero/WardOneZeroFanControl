@@ -1,11 +1,10 @@
+# WardOneZero Fan Control by Eduard Melik-Hakobyan
 
 <p align="left">
   <img src="https://img.shields.io/badge/Windows-11-blue?logo=windows&logoColor=white" alt="Windows 11"/>
-  <img src="https://img.shields.io/badge/C%23-10.0-239120?logo=c-sharp&logoColor=white" alt="C# 10"/>
+  <img src="https://img.shields.io/badge/C%23-10.0-239120?logo=c-sharp&logoColor=white" alt="C# 14"/>
   <img src="https://img.shields.io/badge/.NET-10.0-512BD4?logo=dotnet&logoColor=white" alt=".NET 10"/>
 </p>
-
-# WardOneZero Fan Control by Eduard Melik-Hakobyna
 
 A Windows Service written in C# (.NET 10) to automatically control laptop fan speeds based on CPU and GPU temperatures.
 
