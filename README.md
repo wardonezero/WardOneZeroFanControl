@@ -50,7 +50,6 @@ The project is set up with a publish profile (`FolderProfile.pubxml`) configured
 - `ECService.cs`: Handles all low-level Embedded Controller reads/writes via memory ports to get CPU/GPU temperatures and override fan modes.
 - `Worker.cs` & `Program.cs`: The core .NET background worker loop handling polling intervals and safe recovery states.
 
---
 
 #### Windows 11 C# .Net
 #### Windows Service
@@ -67,14 +66,14 @@ The project is set up with a publish profile (`FolderProfile.pubxml`) configured
 - `byte` GetFanPercent(float tempC)
 
 **EC Service** *(Embedded Controller)* `ECService.cs`
-    - `float?` ReadCPUTemperature()
-    - `float?` ReadGPUTemperature()
-    - `void` EnableManualFanControl()
-    - `void` SetFanSpeed(`byte` percent)
-    - `void` RestoreAutoFanControl()
-    - `static` `void` ECWrite(`byte` register, `byte` value)
-    - `static` `byte` ECRead(`byte` register)
-    - `static` `void` WaitOutputBufferFull()
+- `float?` ReadCPUTemperature()
+- `float?` ReadGPUTemperature()
+- `void` EnableManualFanControl()
+- `void` SetFanSpeed(`byte` percent)
+- `void` RestoreAutoFanControl()
+- `static` `void` ECWrite(`byte` register, `byte` value)
+- `static` `byte` ECRead(`byte` register)
+- `static` `void` WaitOutputBufferFull()
 
 - `static` `class` Port
   - DllImport(`"inpoutx64.dll"`)
@@ -83,8 +82,6 @@ The project is set up with a publish profile (`FolderProfile.pubxml`) configured
     - `static` `extern` `short` Inp32(`short` portAddress)
   - `static` `void` Out8(`int` port, `byte` value)
   - `static` `byte` In8(`int` port)
-
---
  
 - `Program.cs`
 - `Worker.cs`
