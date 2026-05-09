@@ -56,7 +56,7 @@ The project is set up with a publish profile (`FolderProfile.pubxml`) configured
 **Fan Curve Point** `FanCurvePoint.cs`
 - `float` Temperature
 - `byte` Fan Percent
-- 
+
 **Fan Control Options** `FanControlOptions.cs`
 - `int`                 Polling Interval Ms
 - `List<FanCurvePoint>` Fan Curve
