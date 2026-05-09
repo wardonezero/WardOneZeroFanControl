@@ -50,13 +50,9 @@ The project is set up with a publish profile (`FolderProfile.pubxml`) configured
 - `ECService.cs`: Handles all low-level Embedded Controller reads/writes via memory ports to get CPU/GPU temperatures and override fan modes.
 - `Worker.cs` & `Program.cs`: The core .NET background worker loop handling polling intervals and safe recovery states.
 
-Windows 11 C# .Net
-Windows Service
+#### Windows 11 C# .Net
+#### Windows Service
 
-Structure · MD
-Copy
-
-```
 Fan Curve Point FanCurvePoint.cs
 	• float Temperature
 	• byte  Fan Percent
@@ -85,4 +81,3 @@ Program.cs
 Worker.cs
 inpoutx64.dll
 appsettings.json
-```
