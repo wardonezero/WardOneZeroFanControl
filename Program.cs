@@ -1,17 +1,11 @@
 using WardOneZeroFanControl;
-using WardOneZeroFanControl.Services;
 
 HostApplicationBuilder builder = Host.CreateApplicationBuilder(args);
 
-builder.Services.AddWindowsService(options =>
-{
-    options.ServiceName = "WardOneZero Fan Control";
-});
+builder.Services.AddWindowsService(options => { options.ServiceName = "WardOneZero Fan Control"; });
 
-builder.Services.Configure<FanControlOptions>(
-    builder.Configuration.GetSection("FanControl"));
+builder.Services.Configure<FanControlOptions>(builder.Configuration.GetSection("FanControl"));
 
-builder.Services.AddSingleton<HardwareMonitorService>();
 builder.Services.AddSingleton<FanCurveService>();
 builder.Services.AddSingleton<ECService>();
 
