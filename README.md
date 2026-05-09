@@ -53,31 +53,33 @@ The project is set up with a publish profile (`FolderProfile.pubxml`) configured
 #### Windows 11 C# .Net
 #### Windows Service
 
-Fan Curve Point FanCurvePoint.cs
-	• float Temperature
-	• byte  Fan Percent
-Fan Control Options FanControlOptions.cs
-	• int                 Polling Interval Ms
-	• List<FanCurvePoint> Fan Curve
-Fan Curve Service FanCurveService.cs
-	• byte GetFanPercent(float tempC)
-EC Service (Embedded Controller) ECService.cs
-	• float? ReadCPUTemperature
-	• float? ReadGPUTemperature
-	• EnableManualFanControl
-	• SetFanSpeed(byte percent)
-	• RestoreAutoFanControl()
-	• static ECWrite(byte register, byte value)
-	• static byte ECRead(byte register)
-	• static WaitOutputBufferFull
-	• static class Port
-		• DllImport("inpoutx64.dll")
-			• static extern bool IsInpOutDriverOpen
-			• static extern Out32(short portAddress, short data)
-			• static extern short Inp32(short portAddress);
-		• static Out8(int port, byte value)
-		• static byte In8(int port)
-Program.cs
-Worker.cs
-inpoutx64.dll
-appsettings.json
+**Fan Curve Point** `FanCurvePoint.cs`
+- `float` Temperature
+- `byte` Fan Percent
+**Fan Control Options** `FanControlOptions.cs`
+- `int` Polling Interval Ms
+- `List<FanCurvePoint>` Fan Curve
+**Fan Curve Service** `FanCurveService.cs`
+- `byte` GetFanPercent(float tempC)
+**EC Service** *(Embedded Controller)* `ECService.cs`
+- `float?` ReadCPUTemperature
+- `float?` ReadGPUTemperature
+- EnableManualFanControl
+- SetFanSpeed(`byte` percent)
+- RestoreAutoFanControl()
+- `static` ECWrite(`byte` register, `byte` value)
+- `static byte` ECRead(`byte` register)
+- `static` WaitOutputBufferFull
+- `static class` Port
+  - DllImport(`"inpoutx64.dll"`)
+    - `static extern bool` IsInpOutDriverOpen
+    - `static extern` Out32(`short` portAddress, `short` data)
+    - `static extern short` Inp32(`short` portAddress)
+  - `static` Out8(`int` port, `byte` value)
+  - `static byte` In8(`int` port)
+---
+ 
+`Program.cs`
+`Worker.cs`
+`inpoutx64.dll`
+`appsettings.json`
