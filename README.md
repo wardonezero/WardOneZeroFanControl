@@ -16,11 +16,11 @@ Using this on unsupported hardware or modifying EC registers incorrectly can res
 - Windows 11
 - [.NET 10 Runtime](https://dotnet.microsoft.com/download)
 - `inpoutx64.dll` - Required to access hardware ports.
-- **Administrator Privileges** are required to interact with the EC, copy files to the `C:\` drive, and run the background service.
+- **Administrator Privileges** are required to interact with the EC, and run the background service.
 
 ## Installation Guide
 
-1. **System Preparation**: Ensure `inpoutx64.dll` has been unblocked and placed in the project root (so it is copied during publishing).
+1. **System Preparation**: Ensure `inpoutx64.dll` placed in the project root (so it is copied during publishing).
 2. **Publish the Project**: Follow the *Publish Guide* below to compile the application.
 3. **Install as a Windows Service**:
    Open an elevated **Administrator** PowerShell terminal, navigate to the published folder (e.g., `C:\WardOneZero\FanControl`), and execute:
@@ -43,46 +43,46 @@ The project is set up with a publish profile (`FolderProfile.pubxml`) configured
 2. Right-click the `WardOneZeroFanControl` project in Solution Explorer and select **Publish**.
 3. Ensure the `FolderProfile` profile is selected and click **Publish**.
 
-### Using .NET CLI
-Open an elevated Administrator terminal in the project directory and run:
-```powershell
-dotnet publish -p:PublishProfile=FolderProfile
-```
-
 ## Technical Structure
 
 - `FanCurvePoint.cs` & `FanControlOptions.cs`: Models for managing custom fan curves from configuration.
 - `FanCurveService.cs`: Uses linear interpolation to accurately calculate the required fan speed based on current temperatures.
-- `ECService.cs`: Handles all low-level Embedded Controller reads/writes via memory ports to get CPU/GPU temps and override fan modes.
+- `ECService.cs`: Handles all low-level Embedded Controller reads/writes via memory ports to get CPU/GPU temperatures and override fan modes.
 - `Worker.cs` & `Program.cs`: The core .NET background worker loop handling polling intervals and safe recovery states.
 
 Windows 11 C# .Net
 Windows Service
+
+Structure · MD
+Copy
+
+```
 Fan Curve Point FanCurvePoint.cs
-	. float Temperature
-    . byte  Fan Percent
+	• float Temperature
+	• byte  Fan Percent
 Fan Control Options FanControlOptions.cs
-	. int                 Polling Interval Ms
-    . List<FanCurvePoint> Fan Curve
+	• int                 Polling Interval Ms
+	• List<FanCurvePoint> Fan Curve
 Fan Curve Service FanCurveService.cs
-	. byte GetFanPercent(float tempC)
+	• byte GetFanPercent(float tempC)
 EC Service (Embedded Controller) ECService.cs
-	. float? ReadCPUTemperature
-	. float? ReadGPUTemperature
-	. EnableManualFanControl
-	. SetFanSpeed(byte percent)
-	. RestoreAutoFanControl()
-	. static ECWrite(byte register, byte value)
-	. static byte ECRead(byte register)
-	. static WaitOutputBufferFull
-	. static class Port
-		. DllImport("inpoutx64.dll")
-			. static extern bool IsInpOutDriverOpen
-			. static extern Out32(short portAddress, short data)
-			.static extern short Inp32(short portAddress);
-		. static Out8(int port, byte value)
-		. static byte In8(int port)
+	• float? ReadCPUTemperature
+	• float? ReadGPUTemperature
+	• EnableManualFanControl
+	• SetFanSpeed(byte percent)
+	• RestoreAutoFanControl()
+	• static ECWrite(byte register, byte value)
+	• static byte ECRead(byte register)
+	• static WaitOutputBufferFull
+	• static class Port
+		• DllImport("inpoutx64.dll")
+			• static extern bool IsInpOutDriverOpen
+			• static extern Out32(short portAddress, short data)
+			• static extern short Inp32(short portAddress);
+		• static Out8(int port, byte value)
+		• static byte In8(int port)
 Program.cs
 Worker.cs
 inpoutx64.dll
 appsettings.json
+```
